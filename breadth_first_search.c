@@ -9,12 +9,20 @@ typedef struct Vertex {
   int number_of_adj_vertices ;
 
   char label;
+ 
+  bool visited;
+
+  int distance ; // 100 is assumed to be larger than the distance between any pair of vertices in the graph
+  
+
   struct Vertex** adjList ;
 
   //struct Vertex** adjList = malloc(0)
 
 
-  bool visited;
+  struct Vertex* prevVertex;
+  
+
 
 } Vertex;
 
@@ -48,12 +56,14 @@ void enqueue(Vertex* v){
    queueItemCount++;
 
 }
-Vertex* dequeue(Vertex* v){
+
+Vertex* dequeue(){
 
    queueItemCount--;
    return queue[front++];
 
 }
+
 bool isQueueEmpty() {
    return queueItemCount == 0;
 }
@@ -61,11 +71,33 @@ bool isQueueEmpty() {
 
 void breadth_first_search(Vertex* source){
 
-	Vertex* selected = source;
+	source->distance = 0;
+	source->visited = true;
+
+	enqueue(source) ;
+
 
 	while(!isQueueEmpty()){
+		Vertex * u = dequeue();
+		//printf("u's label : %c\n", u->label );
 
-		
+		for (int i = 0; i < u->number_of_adj_vertices; ++i)
+		{
+			if (!(u->adjList[i]->visited))
+			{
+				u->adjList[i]->visited = true;
+				(u->adjList[i]->distance) = u->distance+1;
+				(u->adjList[i]->prevVertex) = malloc (sizeof(Vertex*));
+				(u->adjList[i]->prevVertex) = u;
+				enqueue(u->adjList[i]);
+
+
+				printf("%c : %d\n", u->adjList[i]->label , u->adjList[i]->distance );
+
+			}
+		}
+
+
 
 
 
@@ -76,17 +108,19 @@ void breadth_first_search(Vertex* source){
 int main()
 {
 	
-	Vertex vA  , vB , vS , vC , vG , vF , vD , vE , vH;
+	Vertex vA  , vB , vS , vC , vG , vF , vD , vE , vH , vT;
 
-	vA = (Vertex) {.number_of_adj_vertices =  0 , .label =  'A' };
-	vB = (Vertex) {.number_of_adj_vertices =  0 , .label =  'B' };
-	vS = (Vertex) {.number_of_adj_vertices =  0 , .label =  'S' };
-	vC = (Vertex) {.number_of_adj_vertices =  0 , .label =  'C' };
-	vG = (Vertex) {.number_of_adj_vertices =  0 , .label =  'G' };
-	vF = (Vertex) {.number_of_adj_vertices =  0 , .label =  'F' };
-	vD = (Vertex) {.number_of_adj_vertices =  0 , .label =  'D' };
-	vE = (Vertex) {.number_of_adj_vertices =  0 , .label =  'E' };
-	vH = (Vertex) {.number_of_adj_vertices =  0 , .label =  'H' };
+	vA = (Vertex) {.number_of_adj_vertices =  0 , .label =  'A' , .visited = false , .distance = 100};
+	vB = (Vertex) {.number_of_adj_vertices =  0 , .label =  'B' , .visited = false , .distance = 100};
+	vS = (Vertex) {.number_of_adj_vertices =  0 , .label =  'S' , .visited = false , .distance = 100};
+	vC = (Vertex) {.number_of_adj_vertices =  0 , .label =  'C' , .visited = false , .distance = 100};
+	vG = (Vertex) {.number_of_adj_vertices =  0 , .label =  'G' , .visited = false , .distance = 100};
+	vF = (Vertex) {.number_of_adj_vertices =  0 , .label =  'F' , .visited = false , .distance = 100};
+	vD = (Vertex) {.number_of_adj_vertices =  0 , .label =  'D' , .visited = false , .distance = 100};
+	vE = (Vertex) {.number_of_adj_vertices =  0 , .label =  'E' , .visited = false , .distance = 100};
+	vH = (Vertex) {.number_of_adj_vertices =  0 , .label =  'H' , .visited = false , .distance = 100};
+
+	vT = (Vertex) {.number_of_adj_vertices =  0 , .label =  'T' , .visited = false , .distance = 100};
 
 
 	addVertex(&vA , &vB);
@@ -106,6 +140,9 @@ int main()
 	addVertex(&vH , &vG);
 
 
+	addVertex(&vH , &vT);
+	
+	//addVertex(&vT , &vS);
 
 
 
@@ -121,7 +158,7 @@ int main()
 
 
 
-
+	breadth_first_search(&vA);
 
 
 
