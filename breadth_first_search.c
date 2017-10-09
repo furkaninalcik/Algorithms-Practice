@@ -150,8 +150,8 @@ int main()
 	char a = ((&vE)->adjList[0])->label;
 	char b = ((&vE)->adjList[1])->label;
 	
-	printf("a label is %c\n", a );
-	printf("another label is %c\n", b );
+	//printf("a label is %c\n", a );
+	//printf("another label is %c\n", b );
 
 
 
@@ -159,9 +159,18 @@ int main()
 
 
 	breadth_first_search(&vA);
-
-
-
+/*
+	free((&vA)->prevVertex);
+	free((&vC)->prevVertex);
+	free((&vE)->prevVertex);
+	free((&vF)->prevVertex);
+	free((&vG)->prevVertex);
+	free((&vB)->prevVertex);
+	free((&vS)->prevVertex);
+	free((&vD)->prevVertex);
+	free((&vH)->prevVertex);
+	free((&vT)->prevVertex);
+*/
 
 	free((&vA)->adjList);
 	free((&vC)->adjList);
@@ -172,6 +181,9 @@ int main()
 	free((&vS)->adjList);
 	free((&vD)->adjList);
 	free((&vH)->adjList);
+	free((&vT)->adjList);
+
+
 
 
 	//v1 = { .number_of_adj_vertices =  0 , .label =  "v1" , .adjList []};
