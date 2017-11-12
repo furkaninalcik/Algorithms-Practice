@@ -1,4 +1,14 @@
+void build_max_heap(int array[], int size){
 
+	for (int i = size/2-1; i > 0; --i)
+	{
+		max_heapify(array , i , size);
+		printf("eeee%d p %d\n", i , array[i]);
+	}
+
+
+
+}
 
 void max_heapify(int array[], int i, int size){
 
@@ -57,6 +67,7 @@ int main()
 	}
 
 	int size = 6;
+
 	max_heapify(array,0 , size);
 
 	for (int i = 0; i < 7; ++i)
@@ -64,10 +75,17 @@ int main()
 		printf("%d\n", array[i] );
 	}
 
+	printf("----------BUILDING--------- \n");
+
+	int array2[] = {7,11,3,6,16,1,2};
+
+	build_max_heap(array2,size);
 
 
-
-
+	for (int i = 0; i < 7; ++i)
+	{
+		printf("%d\n", array2[i] );
+	}
 
 
 	return 0;
