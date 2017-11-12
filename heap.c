@@ -1,3 +1,22 @@
+void heapsort(int array[], int size){
+
+	build_max_heap(array, size);
+
+	int dynamic_size = size;
+
+	for (int i = size; i >= 0; --i)
+	{
+		array[dynamic_size] = array[0];
+		max_heapify(array, 0 ,--dynamic_size);
+
+		//dynamic_size--;
+	}
+
+
+}
+
+
+
 void build_max_heap(int array[], int size){
 
 	for (int i = size/2-1; i >= 0; --i)
@@ -98,6 +117,16 @@ int main()
 	for (int i = 0; i < 15; ++i)
 	{
 		printf("%d\n", array3[i] );
+	}
+
+	int array4[] = {6,11,2,20,10,9,72,3,42,35,11,3,5,30,72};
+
+	printf("----------------HEAPSORT-------------\n");
+
+	heapsort(array4,size);
+	for (int i = 0; i < 15; ++i)
+	{
+		printf("%d\n", array4[i] );
 	}
 
 
