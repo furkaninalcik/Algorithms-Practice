@@ -42,7 +42,7 @@ void depth_first_search(Vertex* Source, Vertex** VertexArray ){
 		{
 			(Source->adjList[i])->color = 1;
 					
-			printf("RRR %c\n", (Source->adjList[i])->label  );
+			printf("Vertex %c\n", (Source->adjList[i])->label  );
 			Source->predList = realloc (Source->predList , sizeof(Vertex*)*(++(Source->predList_len)));
 			Source->predList[Source->predList_len-1] = Source->adjList[i];
 			depth_first_search((Source->adjList[i]) , VertexArray);
