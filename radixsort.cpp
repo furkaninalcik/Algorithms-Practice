@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void countingSort(int array[] , int size){
+void countingSort(int array[] , int size , int d){
 
 	int max = 0;
 
@@ -18,7 +18,9 @@ void countingSort(int array[] , int size){
 			max = array[i];
 
 		}
+		cout << array[i] << " + ";
 	}
+	cout << endl;
 
 	cout << "max: " << max << endl;
 
@@ -69,11 +71,13 @@ void countingSort(int array[] , int size){
 }
 
 
-void radixSort(int array[], int size){
+void radixSort(int array[], int size , int digit){
 
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < digit; ++i)
 	{
-		/* code */
+
+		countingSort(array , size , i ); //i -> 0 1 2
+
 	}
 
 }
@@ -88,8 +92,11 @@ int main()
 	array[4] = 9;
 	array[5] = 6;
 
+	int digit = 3;
+	int d =0 ;
 
-	countingSort(array , 6);
+	radixSort(array , 6 , digit);
+	//countingSort(array , 6 , d);
 
 
 
