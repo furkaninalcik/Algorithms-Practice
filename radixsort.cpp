@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 
@@ -13,12 +14,13 @@ void countingSort(int array[] , int size , int d){
 
 	for (int i = 0; i < size; ++i)
 	{
-		if (array[i] > max)
+		cout << array[i] << " + ";
+		cout << "test: " << "digit: " << (int(array[i]/pow(10,d))%10)  << endl; 
+		if ((int(array[i]/pow(10,d))%10) > max)
 		{
 			max = array[i];
 
 		}
-		cout << array[i] << " + ";
 	}
 	cout << endl;
 
@@ -38,7 +40,8 @@ void countingSort(int array[] , int size , int d){
 
 	for (int i = 0; i < size; ++i)
 	{
-		C[array[i]] += 1;
+		int number = (int(array[i]/pow(10,d))%10);
+		C[number] += 1;
 	}
  	
  	for (int i = 1; i < max+1; ++i)
@@ -55,9 +58,9 @@ void countingSort(int array[] , int size , int d){
 
  	for (int i = size-1; i >= 0; --i)
  	{
-
- 		B[C[array[i]]-1] = array[i];
- 		C[array[i]]--;
+		int number = (int(array[i]/pow(10,d))%10);
+ 		B[C[number]-1] = array[i];
+ 		C[number]--;
 
  	}
 
@@ -85,12 +88,12 @@ void radixSort(int array[], int size , int digit){
 int main()
 {
 	int array[6];
-	array[0] = 3;
-	array[1] = 11;
-	array[2] = 6;
-	array[3] = 2;
-	array[4] = 9;
-	array[5] = 6;
+	array[0] = 311;
+	array[1] = 416;
+	array[2] = 276;
+	array[3] = 712;
+	array[4] = 389;
+	array[5] = 106;
 
 	int digit = 3;
 	int d =0 ;
