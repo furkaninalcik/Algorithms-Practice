@@ -14,11 +14,12 @@ void countingSort(int array[] , int size , int d){
 
 	for (int i = 0; i < size; ++i)
 	{
+		int number = (int(array[i]/pow(10,d))%10);
 		cout << array[i] << " + ";
-		cout << "test: " << "digit: " << (int(array[i]/pow(10,d))%10)  << endl; 
-		if ((int(array[i]/pow(10,d))%10) > max)
+		cout << "test: " << "digit: " << number  << endl; 
+		if (number > max)
 		{
-			max = array[i];
+			max = number;
 
 		}
 	}
@@ -66,10 +67,10 @@ void countingSort(int array[] , int size , int d){
 
  	for (int i = 0; i < size; ++i)
  	{
-
+ 		array[i] = B[i];
  		cout << B[i] << " * " ;
  	}
-
+ 	cout << "------------" << endl;
 
 }
 
@@ -88,14 +89,14 @@ void radixSort(int array[], int size , int digit){
 int main()
 {
 	int array[6];
-	array[0] = 311;
-	array[1] = 416;
-	array[2] = 276;
-	array[3] = 712;
-	array[4] = 389;
-	array[5] = 106;
+	array[0] = 302;
+	array[1] = 71659;
+	array[2] = 27655;
+	array[3] = 71212;
+	array[4] = 56379;
+	array[5] = 102;
 
-	int digit = 3;
+	int digit = 5;
 	int d =0 ;
 
 	radixSort(array , 6 , digit);
