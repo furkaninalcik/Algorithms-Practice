@@ -91,7 +91,7 @@ int main()
 	int array[6];
 	array[0] = 302;
 	array[1] = 71659;
-	array[2] = 27655;
+	array[2] = 71459;
 	array[3] = 71212;
 	array[4] = 56379;
 	array[5] = 102;
