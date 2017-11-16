@@ -80,7 +80,8 @@ void Graph::BFS(int s)
 int main()
 {
     // Create a graph given in the above diagram
-    Graph g(8);
+    Graph g(9);
+    g.addEdge(0, 3);
     g.addEdge(3, 1);
     g.addEdge(3, 6);
     g.addEdge(6, 2);
@@ -97,7 +98,7 @@ int main()
  
     cout << "Following is Breadth First Traversal "
          << "(starting from vertex 2) \n";
-    g.BFS(3);
+    g.BFS(0);
     cout << endl;
 
     return 0;

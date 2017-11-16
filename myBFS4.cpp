@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include <list>
  
@@ -6,23 +5,13 @@ using namespace std;
 
 
 class Graph{
-
-
-	int V;
-	list<int>* adj;
-	//list<int>* distance;
-	//list<int>* parent;
-
-
-
-
+	 int V;
+	 list<int>* adj;
 public:
 
 	Graph(int V);
-
-	void BFS(int s);
-
 	void addEdge(int v, int w);
+	void BFS(int s);
 
 };
 
@@ -32,70 +21,66 @@ Graph::Graph(int V){
 	this->V = V;
 	adj = new list<int>[V];
 	
+
 }
 
-
 void Graph::addEdge(int v, int w){
-
+	cout << "ttt";
 	adj[v].push_back(w);
 }
 
-
 void Graph::BFS(int s){
 
-	bool* visited = new bool[V];
-	int* parent = new int[V];
-	int* distance = new int[V];
 
-	int dist = 0;
+	bool visited[V];
+	int parent[V];
+	int distance[V];
+
+
 	for (int i = 0; i < V; ++i)
 	{
 		visited[i] = false;
-		parent[i] = 0;
 	}
 
-	parent[0] = -1;
+	visited[0] = true;
+	distance[0] = 0;
+	parent[0] = -1; // no parent
 
 
 	list<int> queue;
 
 	queue.push_back(s);
 
-
-	list<int>::iterator i; 
+	list<int>::iterator i;
 
 	while(!queue.empty()){
 
 		s = queue.front();
 
-		cout << s << " ";
+		cout << " " << s;
+
 		queue.pop_front();
 
-
-		for (i = adj[s].begin(); i != adj[s].end() ; ++i)
+		for (i = adj[s].begin(); i != adj[s].end(); ++i)
 		{
+	
 			if (!visited[*i])
 			{
-				visited[*i] = true;
-				queue.push_back(*i);
+				distance[*i] = distance[s]+1;;
 				parent[*i] = s;
-				distance[*i] = dist;
-			}
+				visited[*i] = true;	
+				queue.push_back(*i);
+			}			
 
 		}
-		dist++;
 
 	}
-
-	int label = 3;
+	int label = 8;
 
 	cout << endl << label << "'s parent is " << " \n"  << parent[label];
 	cout << endl << label << "'s distance is " << " \n"  << distance[label];
 
 }
-
-
-
 
 
 int main()
